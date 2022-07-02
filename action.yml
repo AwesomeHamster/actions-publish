@@ -1,0 +1,37 @@
+name: Publish To NPM
+description: Publish koishi plugins to npm
+inputs:
+  node-version:
+    default: '16'
+    required: false
+    description: Node.js version to use
+  token:
+    required: true
+    description: NPM token
+  test:
+    default: ''
+    required: false
+    description: Test command, if not specified, then not to test
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+    - name: Upgrade yarn
+      shell: bash
+      run: yarn set version latest
+    - name: Install dependencies
+      shell: bash
+      run: yarn install
+    - name: Build
+      shell: bash
+      run: yarn build
+    - name: Test
+      shell: bash
+      run: yarn test
+    - uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ inputs.token }}
