@@ -42,7 +42,7 @@ runs:
     - name: Test
       shell: bash
       run: |
-        [-z "${{ inputs.test }}"] && echo ":rocket: Skip test" || ${{ inputs.test }} 
+        [ -z "${{ inputs.test }}" ] && echo ":rocket: Skip test" || ${{ inputs.test }} 
     - uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ inputs.token }}
