@@ -9,7 +9,7 @@ inputs:
     required: true
     description: NPM token
   test:
-    default: ''
+    default: 'echo ":rocket: Test skipped!"'
     required: false
     description: Test command, if not specified, then not to test
   install-peer:
@@ -42,7 +42,7 @@ runs:
     - name: Test
       shell: bash
       run: |
-        [ -z "${{ inputs.test }}" ] && echo ":rocket: Skip test" || ${{ inputs.test }} 
+        ${{ inputs.test }} 
     - uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ inputs.token }}
