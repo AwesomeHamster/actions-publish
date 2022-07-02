@@ -12,6 +12,10 @@ inputs:
     default: ''
     required: false
     description: Test command, if not specified, then not to test
+  install-peer:
+    default: 'koishi'
+    required: false
+    description: Peer dependency to install
 
 runs:
   using: composite
@@ -31,13 +35,14 @@ runs:
        YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
       run: |
         yarn install
-        yarn add --dev koishi
+        yarn add --dev ${{ inputs.install-peer }}
     - name: Build
       shell: bash
       run: yarn build
     - name: Test
       shell: bash
-      run: yarn test
+      run: |
+        [-z "${{ inputs.test }}"] && echo ":rocket: Skip test" || ${{ inputs.test }} 
     - uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ inputs.token }}
