@@ -27,7 +27,7 @@ runs:
       shell: bash
       run: |
         yarn install
-        yarn add --no-save koishi
+        yarn add koishi
     - name: Build
       shell: bash
       run: yarn build
