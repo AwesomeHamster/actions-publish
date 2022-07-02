@@ -25,7 +25,9 @@ runs:
       run: yarn set version latest
     - name: Install dependencies
       shell: bash
-      run: yarn install
+      run: |
+        yarn install
+        yarn add --no-save koishi
     - name: Build
       shell: bash
       run: yarn build
