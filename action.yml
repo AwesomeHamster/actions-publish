@@ -43,6 +43,6 @@ runs:
       shell: bash
       run: |
         ${{ inputs.test }} 
-    - uses: JS-DevTools/npm-publish@v1
+    - uses: JS-DevTools/npm-publish@v2
       with:
         token: ${{ inputs.token }}
