@@ -2,7 +2,7 @@ name: Publish To NPM
 description: Publish koishi plugins to npm
 inputs:
   node-version:
-    default: '18'
+    default: '20'
     required: false
     description: Node.js version to use
   token:
@@ -43,6 +43,6 @@ runs:
       shell: bash
       run: |
         ${{ inputs.test }} 
-    - uses: JS-DevTools/npm-publish@v2
+    - uses: JS-DevTools/npm-publish@v3
       with:
         token: ${{ inputs.token }}
